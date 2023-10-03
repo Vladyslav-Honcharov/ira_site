@@ -28,7 +28,7 @@ function Header() {
       window.removeEventListener("resize", handleResize);
     };
   }, []);
-
+  console.log(isBurgerMenuOpen);
   return (
     <header className={`header ${isBurgerMenuOpen ? "menu-open" : ""}`}>
       <Link to="/" className="logo">
@@ -46,7 +46,7 @@ function Header() {
             <li className="header__link" key={index}>
               <NavLink
                 className="header__link"
-                onClick={handleBurgerMenu}
+                // onClick={handleBurgerMenu}
                 to={`/${link.link}`}
                 key={index}
               >

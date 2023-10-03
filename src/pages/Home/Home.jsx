@@ -1,7 +1,12 @@
 import React from "react";
-import "./Home.scss";
+import CustomSlider from "./CustomSlider";
+
 function Home() {
-  return <div className="home">Home</div>;
+  return (
+    <div className="home">
+      <CustomSlider />
+    </div>
+  );
 }
 
 export default Home;

@@ -1,10 +1,36 @@
-.appointment {
-  &-container {
-    margin-top: 100px;
-    background: blanchedalmond;
+/* Стили для контейнера формы */
+.appointment-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 100px;
+}
+
+/* Стили для формы */
+.appointment-form {
+  padding-top: 100px;
+  transform: translateX(10px);
+  background: rgb(50, 50, 50, 0.3);
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 10px 10px rgba(0, 0, 0, 0.5);
+  width: 100%;
+  // min-height: 600px;
+  // max-height: 700px;
+  height: max-content;
+  h2 {
+    font-size: 24px;
+    margin-bottom: 20px;
   }
-  &-form {
-    background: rosybrown;
-    z-index: 0;
+
+  /* Стили для кнопки внутри .appointment-form */
+  button {
+    margin-top: 20px;
   }
+}
+
+/* Стили для общей цены */
+.total-price {
+  margin-top: 20px;
+  font-weight: bold;
 }

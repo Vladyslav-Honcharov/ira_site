@@ -1,44 +1,24 @@
-import React, { useEffect } from "react";
+import React from "react";
 import "./Contacts.scss";
 
 function Contact() {
-  useEffect(() => {
-    // Declare apiKey within the scope of useEffect
-    const apiKey = "AIzaSyCvtmrkdNBp6GtOoKQW67ZVTvmVo-NZR_4"; // Replace with your API key
+  const iframeStyles = {
+    border: "0",
+  };
 
-    // Инициализация карты при загрузке компонента
-    window.initMap = () => {
-      const mapElement = document.getElementById("map");
-
-      const map = new window.google.maps.Map(mapElement, {
-        center: { lat: 51.5074, lng: -0.1278 },
-        zoom: 15,
-      });
-
-      const marker = new window.google.maps.Marker({
-        position: { lat: 51.5074, lng: -0.1278 }, // Укажите координаты маркера
-        map: map,
-        title: "Название маркера", // Замените на ваш текст
-      });
-
-      const infowindow = new window.google.maps.InfoWindow({
-        content: "Текст информационного окна", // Замените на ваш текст
-      });
-
-      marker.addListener("click", () => {
-        infowindow.open(map, marker);
-      });
-    };
-
-    // Загрузка скрипта Google Maps API
-    const script = document.createElement("script");
-    script.src = `https://maps.googleapis.com/maps/api/js?key=${apiKey}&callback=initMap`;
-    script.async = true;
-    script.defer = true;
-    document.head.appendChild(script);
-  }, []);
-
-  return <div id="map" className="map"></div>;
+  return (
+    <div>
+      <iframe
+        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2540.5356526418427!2d30.6267661!3d50.4497493!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x40d4c5512d757cf3%3A0x95818212b6cd3360!2zMjZCLCDQsdGD0LvRjNCy0LDRgCDQktC10YDRhdC-0LLQvdC-0Zcg0KDQsNC00LgsIDI20JEsINCa0LjRl9CyLCAwMjAwMA!5e0!3m2!1suk!2sua!4v1695739590006!5m2!1suk!2sua"
+        width="100%"
+        height="450"
+        style={iframeStyles}
+        allowfullscreen=""
+        loading="lazy"
+        referrerpolicy="no-referrer-when-downgrade"
+      ></iframe>
+    </div>
+  );
 }
 
 export default Contact;

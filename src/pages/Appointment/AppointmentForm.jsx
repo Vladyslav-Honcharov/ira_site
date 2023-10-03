@@ -18,40 +18,30 @@ import {
   initialValues,
   procedure,
   validationSchema,
+  calculatePrice,
 } from "./initialAndShema";
 import InputMask from "react-input-mask"; // Импортируем библиотеку для маскирования
 import Chip from "@mui/material/Chip"; // Импортируем компонент Chip
+import { initializeApp } from "firebase/app";
+import { getFirestore, collection, deleteDoc, doc } from "firebase/firestore";
+
+// Конфигурация Firebase
+const firebaseConfig = {
+  apiKey: "AIzaSyBQFTiKg7DCKv2kCZ_CjzG_9Po-imwtmeM",
+  authDomain: "ira-site.firebaseapp.com",
+  projectId: "ira-site",
+  storageBucket: "ira-site.appspot.com",
+  messagingSenderId: "16883500777",
+  appId: "1:16883500777:web:a0183e891718ac732d5278",
+};
+
+// Инициализация Firebase
+const app = initializeApp(firebaseConfig);
+const db = getFirestore(app);
 
 const AppointmentForm = () => {
   const [isTrainingSelected, setIsTrainingSelected] = useState(false);
   const [totalPrice, setTotalPrice] = useState(0); // State to store the total price
-
-  const calculatePrice = (selectedProcedures) => {
-    // Calculate the price based on selected procedures
-    let price = 0;
-
-    // You can define the price logic here based on selected procedures
-    if (selectedProcedures.includes("Процедура 1")) {
-      price += 100; // Adjust the price as needed
-    }
-
-    if (selectedProcedures.includes("Процедура 2")) {
-      price += 150; // Adjust the price as needed
-    }
-
-    if (selectedProcedures.includes("Процедура 3")) {
-      price += 200; // Adjust the price as needed
-    }
-    if (selectedProcedures.includes("Процедура 4")) {
-      price += 180; // Adjust the price as needed
-    }
-    if (selectedProcedures.includes("Навчання")) {
-      price = 2000; // Adjust the price as needed
-    }
-    // Add more conditions for other procedures
-
-    return price;
-  };
 
   const handleProcedureChange = (selectedProcedures) => {
     // Calculate the price when procedures change
@@ -63,23 +53,38 @@ const AppointmentForm = () => {
     setIsTrainingSelected(isTrainingSelected);
   };
 
-  const handleSubmit = (values, { resetForm }) => {
-    console.log(values);
-    // Calculate the total price when the form is submitted
-    const price = calculatePrice(values.procedure);
-    setTotalPrice(price);
-    values.totalPrice = price;
-    // Include the total price in the form values
+  const handleSubmit = async (values, { resetForm }) => {
+    try {
+      // Создайте ссылку на коллекцию "sessions" в Firebase Firestore
+      const sessionsCollection = collection(db, "sessions");
 
-    // After successful form submission, reset the form
-    resetForm({
-      values: { ...initialValues, totalPrice: 0 }, // Reset total price to 0
-    });
-    setTotalPrice(0);
+      // Создайте документ, который вы хотите удалить (на основе выбранной даты и времени)
+      const sessionDocRef = doc(
+        sessionsCollection,
+        `${values.dateTime}_${values.time}`
+      );
+
+      // Удалите документ из коллекции
+      await deleteDoc(sessionDocRef);
+      console.log(sessionDocRef);
+      // После успешного удаления сеанса, сбросьте форму и обнулите стоимость
+      resetForm({
+        values: { ...initialValues, totalPrice: 0 },
+      });
+      setTotalPrice(0);
+    } catch (error) {
+      console.error("Ошибка при удалении сеанса из базы данных:", error);
+    }
   };
 
   return (
-    <Grid item xs={12} md={6} className="appointment-form">
+    <Grid
+      item
+      xs={12}
+      md={6}
+      className="appointment-form"
+      sx={{ marginTop: "55px", justifyContent: "center" }}
+    >
       <h2>Запис на процедуру</h2>
       <Formik
         initialValues={initialValues}
@@ -186,11 +191,7 @@ const AppointmentForm = () => {
             <ErrorMessage name="procedure" component="div" className="error" />
             {!isTrainingSelected && (
               <Grid container justifyContent="space-between">
-                <Grid
-                  item
-                  xs={6}
-                  // style={{ zIndex: 2 }}
-                >
+                <Grid item xs={6} style={{ zIndex: 2 }}>
                   <DatePicker
                     selected={
                       values.dateTime ? new Date(values.dateTime) : null
@@ -214,6 +215,7 @@ const AppointmentForm = () => {
                         }}
                       />
                     }
+                    minDate={new Date()}
                     // Скрыть автозаполнение
                     autoComplete="off"
                     // Применить стили
