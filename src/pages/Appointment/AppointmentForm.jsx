@@ -11,10 +11,9 @@ import {
   Box,
   Grid,
 } from "@mui/material";
-import DatePicker from "react-datepicker"; // Импортируем DatePicker из react-datepicker
+import { useAppointmentContext } from "./AppointmentContext"; // Импортируйте контекст
 import "react-datepicker/dist/react-datepicker.css";
 import {
-  availableTimes,
   initialValues,
   procedure,
   validationSchema,
@@ -23,8 +22,8 @@ import {
 import InputMask from "react-input-mask"; // Импортируем библиотеку для маскирования
 import Chip from "@mui/material/Chip"; // Импортируем компонент Chip
 import { initializeApp } from "firebase/app";
-import { getFirestore, collection, deleteDoc, doc } from "firebase/firestore";
-
+import { getFirestore, deleteDoc, doc } from "firebase/firestore";
+import axios from "axios";
 // Конфигурация Firebase
 const firebaseConfig = {
   apiKey: "AIzaSyBQFTiKg7DCKv2kCZ_CjzG_9Po-imwtmeM",
@@ -42,6 +41,7 @@ const db = getFirestore(app);
 const AppointmentForm = () => {
   const [isTrainingSelected, setIsTrainingSelected] = useState(false);
   const [totalPrice, setTotalPrice] = useState(0); // State to store the total price
+  const { selectedSession, clearSelectedSession } = useAppointmentContext(); // Получите выбранный сеанс и функцию для его очистки
 
   const handleProcedureChange = (selectedProcedures) => {
     // Calculate the price when procedures change
@@ -53,25 +53,76 @@ const AppointmentForm = () => {
     setIsTrainingSelected(isTrainingSelected);
   };
 
+  const sendTG = async (values) => {
+    try {
+      const TOKEN = "5347978233:AAHvtXwjvqX4vp2C4crq-sbjqnjDOzrnM48";
+      const CHAT_ID = "-1001722621027";
+      const URL_API = `https://api.telegram.org/bot${TOKEN}/sendMessage`;
+
+      let text = `
+        ✨ Новая запись ✨
+        ⚪ Имя клиента: ${values.client} 
+        💌 Телефон: ${values.phone}
+        Процедура: ${values.procedure.join(", ")}
+        Дополнительный контакт: ${values.contacts}
+        Примечание: ${values.note}
+        Цена: ${totalPrice} грн
+        `;
+
+      // Добавьте дату и время только если процедура не "Навчання"
+      if (!isTrainingSelected) {
+        text += `\n⏰ Дата и время: ${values.formatDate}`;
+      }
+
+      await axios.post(URL_API, {
+        chat_id: CHAT_ID,
+        parse_mode: "html",
+        text,
+      });
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
   const handleSubmit = async (values, { resetForm }) => {
     try {
-      // Создайте ссылку на коллекцию "sessions" в Firebase Firestore
-      const sessionsCollection = collection(db, "sessions");
+      // Проверьте, выбрана ли процедура "Навчання"
+      const isTrainingSelected = values.procedure.includes("Навчання");
 
-      // Создайте документ, который вы хотите удалить (на основе выбранной даты и времени)
-      const sessionDocRef = doc(
-        sessionsCollection,
-        `${values.dateTime}_${values.time}`
-      );
+      if (!selectedSession && !isTrainingSelected) {
+        alert("Будь ласка, виберіть дату та час");
+        return;
+      }
+      const formatDate = selectedSession
+        ? selectedSession.date.toDate().toLocaleString("ru-UA", {
+            day: "numeric",
+            month: "numeric",
+            year: "numeric",
+            hour: "numeric",
+            minute: "numeric",
+          })
+        : "";
 
-      // Удалите документ из коллекции
-      await deleteDoc(sessionDocRef);
-      console.log(sessionDocRef);
-      // После успешного удаления сеанса, сбросьте форму и обнулите стоимость
+      // Если "Навчання" выбрано, установите значение даты и времени в пустую строку
+      const dateAndTime = isTrainingSelected ? "" : formatDate;
+
+      if (!isTrainingSelected) {
+        // Только если не выбрана процедура "Навчання", удаляем сеанс из базы данных
+        const sessionRef = doc(db, "sessions", selectedSession.id);
+        await deleteDoc(sessionRef);
+      }
+
+      await sendTG({ ...values, formatDate: dateAndTime });
+      // Очистите выбранный сеанс из контекста
+      clearSelectedSession();
+
       resetForm({
         values: { ...initialValues, totalPrice: 0 },
       });
       setTotalPrice(0);
+
+      alert(`Дякую, чекаю вас ${formatDate}`);
+      window.location.reload();
     } catch (error) {
       console.error("Ошибка при удалении сеанса из базы данных:", error);
     }
@@ -189,72 +240,7 @@ const AppointmentForm = () => {
               </Select>
             </FormControl>
             <ErrorMessage name="procedure" component="div" className="error" />
-            {!isTrainingSelected && (
-              <Grid container justifyContent="space-between">
-                <Grid item xs={6} style={{ zIndex: 2 }}>
-                  <DatePicker
-                    selected={
-                      values.dateTime ? new Date(values.dateTime) : null
-                    }
-                    onChange={(date) => {
-                      const formattedDate = date
-                        ? date.toISOString().split("T")[0]
-                        : ""; // Обрезаем время
-                      setFieldValue("dateTime", formattedDate); // Обновляем значение dateTime в форме
-                    }}
-                    dateFormat="dd/MM/yyyy"
-                    customInput={
-                      <TextField
-                        name="dateTime"
-                        fullWidth
-                        margin="normal"
-                        variant="outlined"
-                        label="Дата *"
-                        InputLabelProps={{
-                          shrink: true,
-                        }}
-                      />
-                    }
-                    minDate={new Date()}
-                    // Скрыть автозаполнение
-                    autoComplete="off"
-                    // Применить стили
-                    className="custom-datepicker"
-                  />
 
-                  <ErrorMessage
-                    name="dateTime"
-                    component="div"
-                    className="error"
-                  />
-                </Grid>
-                <Grid item xs={4} md={6} sx={{ mt: 2 }}>
-                  <FormControl fullWidth variant="outlined">
-                    <InputLabel htmlFor="time">Час *</InputLabel>
-                    <Select
-                      labelId="time-label"
-                      id="time"
-                      name="time"
-                      value={values.time}
-                      onChange={(e) => {
-                        setFieldValue("time", e.target.value);
-                      }}
-                      label="Час *"
-                    >
-                      <MenuItem value="" disabled>
-                        Виберіть час *
-                      </MenuItem>
-                      {availableTimes.map((timeSlot) => (
-                        <MenuItem key={timeSlot} value={timeSlot}>
-                          {timeSlot}
-                        </MenuItem>
-                      ))}
-                    </Select>
-                  </FormControl>
-                  <ErrorMessage name="time" component="div" className="error" />
-                </Grid>
-              </Grid>
-            )}
             <Field
               component={TextField}
               name="contacts"
@@ -281,11 +267,27 @@ const AppointmentForm = () => {
               value={values.note}
               onChange={(e) => setFieldValue("note", e.target.value)} // Используйте setFieldValue для обновления значения поля
             />
+            {!isTrainingSelected && (
+              <div>
+                Дата сеансу:{" "}
+                {selectedSession ? (
+                  selectedSession.date.toDate().toLocaleString("ru-UA", {
+                    day: "numeric",
+                    month: "numeric",
+                    year: "numeric",
+                    hour: "numeric",
+                    minute: "numeric",
+                  })
+                ) : (
+                  <strong>Не вибрано !</strong>
+                )}
+              </div>
+            )}
             <div className="total-price">
               <p>Ціна: {totalPrice} грн</p>
             </div>
 
-            <Button type="submit" variant="contained" color="primary">
+            <Button type="submit" variant="contained" color="secondary">
               Записатись
             </Button>
           </Form>

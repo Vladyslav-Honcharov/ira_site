@@ -19,32 +19,17 @@ export const validationSchema = Yup.object().shape({
       "Номер телефона повинен починатися з +380 і мати 12 цифр"
     ),
   procedure: Yup.array().min(1, "Виберіть хоча б одну процедуру"),
-  dateTime: Yup.string().test(
-    "dateTime",
-    "Дата і час обов'язкові",
-    function (value) {
-      // Проверяем, выбрана ли процедура "Навчання"
-      const isTrainingSelected = this.parent.procedure.includes("Навчання");
-
-      // Если процедура "Навчання" выбрана, dateTime не обязательна
-      if (isTrainingSelected) {
-        return true;
-      }
-
-      // В противном случае, dateTime должна быть заполнена
-      return !!value;
-    }
-  ),
+  // dateTime: Yup.string().required("Ім'я обов'язкове"),
 });
 
 export const initialValues = {
   client: "",
   phone: "",
   procedure: [],
-  dateTime: "",
+  // dateTime: "",
   contacts: "",
   note: "",
-  time: "", // Добавьте поле "time" с начальным значением
+  // time: "", // Добавьте поле "time" с начальным значением
 };
 
 export const calculatePrice = (selectedProcedures) => {

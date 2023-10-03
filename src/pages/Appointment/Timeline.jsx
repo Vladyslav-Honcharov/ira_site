@@ -18,6 +18,7 @@ import {
   TableRow,
 } from "@mui/material";
 import { initializeApp } from "firebase/app";
+import { useAppointmentContext } from "./AppointmentContext"; // Импортируйте контекст
 
 const useStyles = {
   timeline: {
@@ -52,7 +53,7 @@ const db = getFirestore(app);
 
 function Timeline() {
   const [sessions, setSessions] = useState([]);
-  const [selectedDateTime, setSelectedDateTime] = useState(null);
+  const { selectedSession, selectSession } = useAppointmentContext(); // Получите выбранный сеанс и функцию для его выбора
 
   useEffect(() => {
     fetchDataFromFirebase();
@@ -66,14 +67,17 @@ function Timeline() {
     );
 
     const sessionDocs = await getDocs(sessionsQuery);
-    const sessions = [];
+    const sessionsWithId = []; // Массив, в котором будут храниться объекты { id, data }
 
     sessionDocs.forEach((doc) => {
-      const data = doc.data();
-      sessions.push(data);
+      const id = doc.id; // Получаем id документа
+      const data = doc.data(); // Получаем данные документа
+      const sessionWithId = { id, ...data }; // Создаем объект с id и данными
+      sessionsWithId.push(sessionWithId);
     });
 
-    setSessions(sessions); // Устанавливаем полученные данные в состояние
+    console.log(sessionsWithId);
+    setSessions(sessionsWithId); // Устанавливаем полученные данные в состояние
   };
 
   // Группировка записей по датам
@@ -108,9 +112,13 @@ function Timeline() {
               key={index}
               onClick={() => {
                 // Обработчик клика на дату и времени сеанса
-                setSelectedDateTime(session.date.toDate());
+                selectSession(session); // Выбираем сеанс
               }}
-              style={{ cursor: "pointer", textDecoration: "underline" }}
+              style={{
+                cursor: "pointer",
+                textDecoration: "underline",
+                color: selectedSession === session ? "blue" : "inherit",
+              }}
             >
               {session.date.toDate().toLocaleTimeString("ru-UA", {
                 hour: "numeric",
