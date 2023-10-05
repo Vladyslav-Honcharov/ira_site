@@ -1,0 +1,44 @@
+/* Стили для контейнера портфолио */
+.portfolio-container {
+  margin-top: 100px;
+  text-align: center;
+  padding: 20px;
+}
+
+/* Стили для заголовка */
+h1 {
+  font-size: 24px;
+  margin-bottom: 20px;
+}
+
+/* Стили для сетки фотографий */
+.photo-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  justify-content: center;
+}
+
+/* Стили для отдельной фотографии */
+.photo {
+  text-align: center;
+  background-color: rgba(255, 255, 255, 0.4);
+  border: 1px solid #ccc;
+  padding: 10px;
+  border-radius: 5px;
+  box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.2);
+  height: max-content;
+}
+
+/* Стили для изображения внутри фотографии */
+.photo-image {
+  max-width: 100%;
+  height: auto;
+  border-radius: 5px;
+}
+
+/* Стили для описания фотографии */
+.photo-description {
+  margin-top: 10px;
+  font-size: 14px;
+}

@@ -29,10 +29,17 @@ function Header() {
     };
   }, []);
   console.log(isBurgerMenuOpen);
+  const closeBurgerMenu = () => {
+    setIsBurgerMenuOpen(false);
+  };
   return (
     <header className={`header ${isBurgerMenuOpen ? "menu-open" : ""}`}>
       <Link to="/" className="logo">
-        <img src="your-logo-url.jpg" alt="logo" />
+        <img
+          src="https://bogatyr.club/uploads/posts/2023-03/1678363865_bogatyr-club-p-logotip-brovista-foni-pinterest-47.png"
+          alt="logo"
+          className="logo"
+        />
       </Link>
       <div className="burger-menu-icon" onClick={handleBurgerMenu}>
         <div className={`bar ${isBurgerMenuOpen ? "open" : ""}`}></div>
@@ -49,6 +56,7 @@ function Header() {
                 // onClick={handleBurgerMenu}
                 to={`/${link.link}`}
                 key={index}
+                onClick={closeBurgerMenu}
               >
                 {link.name}
               </NavLink>
