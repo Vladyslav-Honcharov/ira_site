@@ -3,8 +3,27 @@
   width: 100%;
   color: aliceblue;
   display: flex;
+  flex-wrap: wrap;
   justify-content: space-between;
   align-items: center;
   padding: 10px;
-  height: 10vh;
+  height: max-content;
+  &-social {
+    display: flex;
+    justify-content: center;
+
+    margin: 20px;
+  }
+  a {
+    margin: 0 10px;
+    display: block;
+  }
+}
+.icon {
+  display: block;
+  width: 25px; /* Adjust the desired width */
+  height: 25px; /* Adjust the desired height */
+  &:hover {
+    fill: aqua;
+  }
 }

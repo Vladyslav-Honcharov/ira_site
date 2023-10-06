@@ -1,5 +1,6 @@
 /* Стили для контейнера формы */
 .appointment-container {
+  font-family: "Dancing Script", cursive;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -8,6 +9,7 @@
 
 /* Стили для формы */
 .appointment-form {
+  font-family: "Dancing Script", cursive;
   padding-top: 100px;
   transform: translateX(10px);
   background: rgb(50, 50, 50, 0.3);
@@ -19,18 +21,21 @@
   // max-height: 700px;
   height: max-content;
   h2 {
+    font-family: "Dancing Script", cursive;
     font-size: 24px;
     margin-bottom: 20px;
   }
 
   /* Стили для кнопки внутри .appointment-form */
   button {
+    font-family: "Dancing Script", cursive;
     margin-top: 20px;
   }
 }
 
 /* Стили для общей цены */
 .total-price {
+  font-family: "Dancing Script", cursive;
   margin-top: 20px;
   font-weight: bold;
 }

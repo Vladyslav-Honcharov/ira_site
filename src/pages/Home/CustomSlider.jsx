@@ -19,12 +19,12 @@ const useStyles = makeStyles((theme) => ({
   },
   slideImage: {
     height: "70vh",
-    objectFit: "cover",
+    objectFit: "content",
   },
   slideContent: {
     position: "absolute",
-    bottom: theme.spacing(4),
-    left: theme.spacing(4),
+    bottom: theme.spacing(5),
+    left: theme.spacing(6),
     color: "white",
   },
   slideText: {
@@ -53,15 +53,14 @@ const Slider = () => {
     },
     {
       image:
-        "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQMdQt_vgAqCAEX_LFl9QkXdwLfTud3miCWHA&usqp=CAU",
-      text: "Найкрасивіші брови",
+        "https://celes.club/uploads/posts/2022-05/1652859478_1-celes-club-p-fon-dlya-praisa-narashchivanie-resnits-kra-1.jpg",
+      text: "Навчаю якісно робити красу",
       buttonText: "Приклади робіт",
       buttonURL: "/Portfolio",
     },
     {
-      image:
-        "https://images.prom.ua/2730202058_w640_h640_vinilovaya-naklejka-brows.jpg",
-      text: "Найкращі вії",
+      image: "https://content1.rozetka.com.ua/goods/images/big/286804360.jpg",
+      text: "Приємні ціни",
       buttonText: "Ціни",
       buttonURL: "/Price",
     },

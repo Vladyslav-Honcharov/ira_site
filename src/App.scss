@@ -1,14 +1,28 @@
-@import url("https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;500;600;700&display=swap");
+// @import url("https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;500;600;700&display=swap");
+@font-face {
+  font-family: "MyFont";
+  src: url("../public/fonts/snellroundhand_black.otf") format("opentype");
+  /* Дополнительные свойства шрифта, если нужно */
+}
+
+@font-face {
+  font-family: "MyFont-Bold";
+  src: url("../public/fonts/snellroundhand_bold.otf") format("opentype");
+  /* Дополнительные свойства шрифта, если нужно */
+}
 /* Указываем box sizing */
 *,
 *::before,
 *::after {
+  font-family: "MyFont" !important;
+
   box-sizing: border-box;
 }
 
 /* Убираем внутренние отступы */
 ul[class],
 ol[class] {
+  font-family: "MyFont" !important;
   padding: 0;
 }
 
@@ -27,6 +41,7 @@ figcaption,
 blockquote,
 dl,
 dd {
+  font-family: "MyFont" !important;
   margin: 0;
 }
 
@@ -40,22 +55,27 @@ body {
   background-size: cover;
   margin: 0;
   padding: 0;
-  font-family: "Dancing Script", cursive;
+  font-family: "MyFont" !important;
 }
 
 /* Удаляем стандартную стилизацию для всех ul и il, у которых есть атрибут class*/
 ul[class],
 ol[class],
 li[class] {
+  font-family: "MyFont" !important;
   list-style: none;
 }
 
 /* Элементы a, у которых нет класса, сбрасываем до дефолтных стилей */
 a:not([class]) {
+  font-family: "MyFont" !important;
+
   text-decoration-skip-ink: auto;
   text-decoration: none;
 }
 a {
+  font-family: "MyFont" !important;
+
   text-decoration: none;
 }
 /* Упрощаем работу с изображениями */
@@ -74,7 +94,7 @@ input,
 button,
 textarea,
 select {
-  font: inherit;
+  font-family: "MyFont" !important;
 }
 
 /* Удаляем все анимации и переходы для людей, которые предпочитай их не использовать */
@@ -87,5 +107,10 @@ select {
   }
 }
 .main {
+  font-family: "MyFont" !important;
   min-height: 100vh;
+}
+
+* {
+  font-family: "MyFont" !important;
 }

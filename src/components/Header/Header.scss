@@ -1,18 +1,18 @@
 .header {
-  background: black;
+  background: rgb(25, 25, 25, 0.5);
   width: 100vw;
   color: aliceblue;
   display: flex;
   justify-content: space-between;
   align-items: center;
   padding: 15px;
-  opacity: 0.5;
   max-width: 100vw;
   position: fixed;
   top: 0;
   left: 0;
   max-height: 70px;
   z-index: 999;
+  font-family: "MyFont" !important ;
 }
 .logo {
   opacity: 1 !important;

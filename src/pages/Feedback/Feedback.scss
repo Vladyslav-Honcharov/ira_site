@@ -1,0 +1,24 @@
+.feedback-container {
+  margin-top: 100px;
+  max-width: 1200px;
+  display: flex;
+  flex-wrap: wrap;
+  // gap: 5px; /* Расстояние между фотографиями */
+  justify-content: center; /* Центрирование контента по горизонтали */
+  align-items: center; /* Центрирование контента по вертикали */
+  margin-bottom: 20px;
+}
+
+/* Пример стилей для фотографий (для каждой фотографии) */
+.feedback-photo {
+  display: block;
+  max-width: 310px; /* Максимальная ширина фотографии */
+  height: auto; /* Автоматическая высота для сохранения пропорций */
+  border: 2px solid #ccc; /* Обрамление фотографии */
+  border-radius: 20px; /* Закругленные углы */
+}
+
+.feedback-wrapper {
+  display: flex;
+  justify-content: center;
+}
