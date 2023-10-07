@@ -109,6 +109,7 @@ select {
 .main {
   font-family: "MyFont" !important;
   min-height: 100vh;
+  height: max-content;
 }
 
 * {
