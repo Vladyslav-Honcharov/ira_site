@@ -35,10 +35,18 @@ h1 {
   max-width: 100%;
   height: auto;
   border-radius: 5px;
+  transition: transform 0.3s;
 }
 
 /* Стили для описания фотографии */
 .photo-description {
   margin-top: 10px;
   font-size: 14px;
+}
+.photo:hover .photo-image {
+  transform: scale(
+    1.1
+  ); /* Увеличиваем изображение до 110% от исходного размера */
+  cursor: pointer; /* Изменяем курсор при наведении */
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.3); /* Добавляем тень для эффекта поднятия */
 }

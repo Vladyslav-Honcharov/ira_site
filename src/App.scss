@@ -1,13 +1,23 @@
 // @import url("https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;500;600;700&display=swap");
 @font-face {
   font-family: "MyFont";
-  src: url("../public/fonts/snellroundhand_black.otf") format("opentype");
+  src: url("../public/fonts/palladiourw_bol.otf") format("opentype");
   /* Дополнительные свойства шрифта, если нужно */
 }
 
 @font-face {
   font-family: "MyFont-Bold";
-  src: url("../public/fonts/snellroundhand_bold.otf") format("opentype");
+  src: url("../public/fonts/palladiourw_bolita.otf") format("opentype");
+  /* Дополнительные свойства шрифта, если нужно */
+}
+@font-face {
+  font-family: "MyFont-reg";
+  src: url("../public/fonts/palladiourw_reg.otf") format("opentype");
+  /* Дополнительные свойства шрифта, если нужно */
+}
+@font-face {
+  font-family: "MyFont-regita";
+  src: url("../public/fonts/palladiourw_regita.otf") format("opentype");
   /* Дополнительные свойства шрифта, если нужно */
 }
 /* Указываем box sizing */

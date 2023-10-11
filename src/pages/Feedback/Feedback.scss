@@ -6,7 +6,6 @@
   // gap: 5px; /* Расстояние между фотографиями */
   justify-content: center; /* Центрирование контента по горизонтали */
   align-items: center; /* Центрирование контента по вертикали */
-  margin-bottom: 20px;
 }
 
 /* Пример стилей для фотографий (для каждой фотографии) */
@@ -16,9 +15,17 @@
   height: auto; /* Автоматическая высота для сохранения пропорций */
   border: 2px solid #ccc; /* Обрамление фотографии */
   border-radius: 20px; /* Закругленные углы */
+  transition: transform 0.3s;
+  margin: 10px;
 }
 
 .feedback-wrapper {
   display: flex;
   justify-content: center;
+}
+.feedback-photo:hover {
+  transform: scale(1.1); /* Увеличиваем размер фотографии на 10% */
+  transition: transform 0.3s; /* Добавляем плавный переход */
+  cursor: pointer; /* Изменяем курсор при наведении */
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.3); /* Добавляем небольшую тень */
 }

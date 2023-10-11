@@ -86,7 +86,6 @@ function Price() {
 
   return (
     <div style={useStyles.price}>
-      <Typography variant="h4">Ціни на послуги майстра</Typography>
       <Paper style={useStyles.tableContainer}>
         <Typography variant="h5" align="center">
           Послуги для брів
@@ -118,7 +117,6 @@ function Price() {
           </TableBody>
         </Table>
       </Paper>
-
       <Paper style={useStyles.tableContainer}>
         <Typography variant="h5" align="center">
           Послуги для вій

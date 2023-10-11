@@ -29,11 +29,14 @@ const useStyles = {
     overflow: "hidden",
   },
   tableHeaderCell: {
-    // backgroundColor: "#f0f0f0",
     fontWeight: "bold",
   },
   head: {
     textAlign: "center",
+  },
+  table: {
+    backgroundColor: "rgba(215, 209, 209, 0.5)", // Установите задний фон таблицы
+    borderRadius: "20px",
   },
 };
 
@@ -99,11 +102,12 @@ function Timeline() {
 
     return groupedSessions;
   };
-
   const renderSchedule = () => {
     const groupedSessions = groupSessionsByDate();
 
-    return Object.keys(groupedSessions).map((dateKey) => (
+    const dateKeys = Object.keys(groupedSessions);
+
+    return dateKeys.map((dateKey, index) => (
       <TableRow key={dateKey} hover={true}>
         <TableCell>{dateKey}</TableCell>
         <TableCell>
@@ -111,8 +115,7 @@ function Timeline() {
             <span
               key={index}
               onClick={() => {
-                // Обработчик клика на дату и времени сеанса
-                selectSession(session); // Выбираем сеанс
+                selectSession(session);
               }}
               style={{
                 cursor: "pointer",
@@ -137,9 +140,14 @@ function Timeline() {
     <div className={useStyles.timeline}>
       <div
         className={useStyles.head}
-        style={{ fontSize: "24px", textAlign: "center", marginBottom: 5 }}
+        style={{
+          fontSize: "24px",
+          textAlign: "center",
+          marginBottom: 5,
+          color: "antiquewhite",
+        }}
       >
-        График
+        Графік
       </div>
       <div className="timeline__content">
         <Grid container justifyContent="center" sx={{ marginBottom: "30px" }}>
@@ -150,7 +158,7 @@ function Timeline() {
               sx={{ background: "none" }}
             >
               <TableContainer>
-                <Table bgcolor={"#ffebee"} sx={{ borderRadius: "20px" }}>
+                <Table sx={useStyles.table}>
                   <TableHead>
                     <TableRow>
                       <TableCell className={useStyles.tableHeaderCell}>

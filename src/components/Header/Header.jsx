@@ -34,12 +34,8 @@ function Header() {
   };
   return (
     <header className={`header ${isBurgerMenuOpen ? "menu-open" : ""}`}>
-      <Link to="/" className="logo">
-        <img
-          src="https://bogatyr.club/uploads/posts/2023-03/1678363865_bogatyr-club-p-logotip-brovista-foni-pinterest-47.png"
-          alt="logo"
-          className="logo"
-        />
+      <Link to="/" className="logo" onClick={closeBurgerMenu}>
+        <img src="/images/logo.png" alt="logo" className="logo" />
       </Link>
       <div className="burger-menu-icon" onClick={handleBurgerMenu}>
         <div className={`bar ${isBurgerMenuOpen ? "open" : ""}`}></div>

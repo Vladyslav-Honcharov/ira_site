@@ -24,6 +24,8 @@ import Chip from "@mui/material/Chip"; // Импортируем компоне�
 import { initializeApp } from "firebase/app";
 import { getFirestore, deleteDoc, doc } from "firebase/firestore";
 import axios from "axios";
+import { grey } from "@mui/material/colors";
+
 // Конфигурация Firebase
 const firebaseConfig = {
   apiKey: "AIzaSyBQFTiKg7DCKv2kCZ_CjzG_9Po-imwtmeM",
@@ -287,7 +289,16 @@ const AppointmentForm = () => {
               <p>Ціна: {totalPrice} грн</p>
             </div>
 
-            <Button type="submit" variant="contained" color="secondary">
+            <Button
+              type="submit"
+              variant="contained"
+              style={{
+                color: "black",
+                borderColor: "black",
+                background: grey[400],
+                minWidth: "150px",
+              }}
+            >
               Записатись
             </Button>
           </Form>

@@ -51,7 +51,7 @@
 }
 
 .menu-open {
-  background-color: rgb(140, 128, 113);
+  background-color: rgb(73, 71, 71, 0.98);
   opacity: 1;
 }
 
@@ -89,6 +89,10 @@
 .burger-menu-icon .bar.open {
   transform: rotate(-45deg) translate(-5px, 6px);
 }
+.header__link:active,
+.header__link:focus {
+  color: rgb(173, 144, 144); /* Измените цвет на ваш выбор */
+}
 
 @media screen and (max-width: 700px) {
   .burger-menu-icon {
@@ -98,7 +102,7 @@
     z-index: 999;
     &__links {
       top: 70px;
-      height: 90vh;
+      height: 93vh;
     }
   }
 }

@@ -4,10 +4,11 @@ import "react-responsive-carousel/lib/styles/carousel.min.css";
 import { makeStyles } from "@mui/styles";
 import Typography from "@mui/material/Typography";
 import { Button } from "@mui/material";
+import { grey } from "@mui/material/colors";
 
 const useStyles = makeStyles((theme) => ({
   slider: {
-    height: "70vh",
+    height: "80vh",
     width: "100%",
     position: "relative",
     overflow: "hidden",
@@ -18,23 +19,29 @@ const useStyles = makeStyles((theme) => ({
     position: "relative",
   },
   slideImage: {
-    height: "70vh",
-    objectFit: "content",
+    height: "80vh",
+    objectFit: "fill",
+    // objectPosition: "right center",
   },
   slideContent: {
     position: "absolute",
     bottom: theme.spacing(5),
     left: theme.spacing(6),
     color: "white",
+    background: "rgba(0, 0, 0, 0.5)",
+    borderRadius: "20px",
+    padding: "15px",
+    boxShadow: "0 4px 6px rgba(0, 0, 0, 1), 0 1px 3px rgba(0, 0, 0, 1)",
+    minWidth: "200px",
   },
   slideText: {
     fontWeight: "bold",
-    color: "black",
+    color: "white",
     fontFamily: "Didact Gothic, sans-seri",
     fontSize: 30,
+    paddingBottom: "15px",
   },
   slideButton: {
-    color: "secondary",
     marginTop: theme.spacing(5),
   },
 }));
@@ -45,24 +52,22 @@ const Slider = () => {
 
   const slides = [
     {
-      image:
-        "https://img.freepik.com/premium-vector/beautiful-and-luxurious-and-modern-woman-s-eyelashes-and-eyebrows-logo-design-logo-for-business-beauty-salon-makeup-eyelash-shop_661039-111.jpg",
+      image: "/images/Slider/s1.jpg",
       text: "Швидкий онлайн запис ",
       buttonText: "Записатись",
       buttonURL: "/Appointment",
     },
     {
-      image:
-        "https://celes.club/uploads/posts/2022-05/1652859478_1-celes-club-p-fon-dlya-praisa-narashchivanie-resnits-kra-1.jpg",
-      text: "Навчаю якісно робити красу",
-      buttonText: "Приклади робіт",
-      buttonURL: "/Portfolio",
-    },
-    {
-      image: "https://content1.rozetka.com.ua/goods/images/big/286804360.jpg",
+      image: "/images/Slider/s1test.jpg",
       text: "Приємні ціни",
       buttonText: "Ціни",
       buttonURL: "/Price",
+    },
+    {
+      image: "/images/Slider/s2test.jpg",
+      text: "Навчаю якісно робити красу",
+      buttonText: "Приклади робіт",
+      buttonURL: "/Portfolio",
     },
   ];
 
@@ -104,7 +109,11 @@ const Slider = () => {
                 href={slide.buttonURL}
                 className={classes.slideButton}
                 variant="outlined"
-                color="secondary"
+                style={{
+                  color: grey[400],
+                  borderColor: grey[400],
+                  minWidth: "150px",
+                }}
               >
                 {slide.buttonText}
               </Button>
