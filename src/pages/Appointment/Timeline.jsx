@@ -25,7 +25,6 @@ const useStyles = {
     fontWeight: "bold",
   },
   tableContainer: {
-    borderRadius: 8,
     overflow: "hidden",
   },
   tableHeaderCell: {
@@ -36,7 +35,7 @@ const useStyles = {
   },
   table: {
     backgroundColor: "rgba(215, 209, 209, 0.5)", // Установите задний фон таблицы
-    borderRadius: "20px",
+
     overflow: "hidden",
   },
 };
@@ -144,36 +143,35 @@ function Timeline() {
           fontSize: "24px",
           textAlign: "center",
           marginBottom: 5,
-          color: "antiquewhite",
+          color: "black",
         }}
       >
         Графік
       </div>
-      <div className="timeline__content">
-        <Grid container justifyContent="center" sx={{ marginBottom: "30px" }}>
-          <Grid item xs={12} md={10}>
-            <Paper
-              elevation={3}
-              className={useStyles.tableContainer}
-              sx={{ background: "none" }}
-            >
-              <TableContainer>
-                <Table sx={useStyles.table}>
-                  <TableHead>
-                    <TableRow>
-                      <TableCell className={useStyles.tableHeaderCell}>
-                        Дата та час
-                      </TableCell>
-                      {/* Другие заголовки для полей данных */}
-                    </TableRow>
-                  </TableHead>
-                  <TableBody>{renderSchedule()}</TableBody>
-                </Table>
-              </TableContainer>
-            </Paper>
-          </Grid>
+
+      <Grid container justifyContent="center" sx={{ marginBottom: "30px" }}>
+        <Grid item xs={12} md={10}>
+          <Paper
+            elevation={3}
+            className={useStyles.tableContainer}
+            sx={{ background: "none" }}
+          >
+            <TableContainer>
+              <Table sx={useStyles.table}>
+                <TableHead>
+                  <TableRow>
+                    <TableCell className={useStyles.tableHeaderCell}>
+                      Дата та час
+                    </TableCell>
+                    {/* Другие заголовки для полей данных */}
+                  </TableRow>
+                </TableHead>
+                <TableBody>{renderSchedule()}</TableBody>
+              </Table>
+            </TableContainer>
+          </Paper>
         </Grid>
-      </div>
+      </Grid>
     </div>
   );
 }

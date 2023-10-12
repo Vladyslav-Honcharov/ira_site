@@ -20,7 +20,6 @@ const useStyles = makeStyles((theme) => ({
   },
   slideImage: {
     height: "75vh",
-    objectFit: "fill",
   },
   slideContent: {
     minWidth: "200px",

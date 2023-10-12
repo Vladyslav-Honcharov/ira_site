@@ -48,7 +48,7 @@ const portfolioData = [
 function Portfolio() {
   return (
     <div className="portfolio-container">
-      <h1 style={{ color: "white" }}>Мої роботи</h1>
+      <h1 style={{ color: "black" }}>Мої роботи</h1>
       <div className="photo-grid">
         {portfolioData.map((item) => (
           <div key={item.id} className="photo">
@@ -56,9 +56,8 @@ function Portfolio() {
               src={item.imageUrl}
               alt={item.description}
               className="photo-image"
-              style={{ maxWidth: "300px", maxHeight: "300px" }}
             />
-            <p className="photo-description">{item.description}</p>
+            {/* <p className="photo-description">{item.description}</p> */}
           </div>
         ))}
       </div>
