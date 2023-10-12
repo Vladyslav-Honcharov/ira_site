@@ -8,7 +8,7 @@ import { grey } from "@mui/material/colors";
 
 const useStyles = makeStyles((theme) => ({
   slider: {
-    height: "80vh",
+    height: "75vh",
     width: "100%",
     position: "relative",
     overflow: "hidden",
@@ -19,11 +19,11 @@ const useStyles = makeStyles((theme) => ({
     position: "relative",
   },
   slideImage: {
-    height: "80vh",
+    height: "75vh",
     objectFit: "fill",
-    // objectPosition: "right center",
   },
   slideContent: {
+    minWidth: "200px",
     position: "absolute",
     bottom: theme.spacing(5),
     left: theme.spacing(6),
@@ -32,17 +32,6 @@ const useStyles = makeStyles((theme) => ({
     borderRadius: "20px",
     padding: "15px",
     boxShadow: "0 4px 6px rgba(0, 0, 0, 1), 0 1px 3px rgba(0, 0, 0, 1)",
-    minWidth: "200px",
-  },
-  slideText: {
-    fontWeight: "bold",
-    color: "white",
-    fontFamily: "Didact Gothic, sans-seri",
-    fontSize: 30,
-    paddingBottom: "15px",
-  },
-  slideButton: {
-    marginTop: theme.spacing(5),
   },
 }));
 
@@ -89,7 +78,7 @@ const Slider = () => {
         showThumbs={false}
         showStatus={false}
         autoPlay={true}
-        interval={5000}
+        interval={10000}
         selectedItem={activeSlide}
         onChange={setActiveSlide}
         infiniteLoop={true}
@@ -113,6 +102,7 @@ const Slider = () => {
                   color: grey[400],
                   borderColor: grey[400],
                   minWidth: "150px",
+                  marginTop: "25px",
                 }}
               >
                 {slide.buttonText}

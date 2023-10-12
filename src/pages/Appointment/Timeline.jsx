@@ -37,6 +37,7 @@ const useStyles = {
   table: {
     backgroundColor: "rgba(215, 209, 209, 0.5)", // Установите задний фон таблицы
     borderRadius: "20px",
+    overflow: "hidden",
   },
 };
 
@@ -79,7 +80,6 @@ function Timeline() {
       sessionsWithId.push(sessionWithId);
     });
 
-    console.log(sessionsWithId);
     setSessions(sessionsWithId); // Устанавливаем полученные данные в состояние
   };
 
@@ -162,7 +162,7 @@ function Timeline() {
                   <TableHead>
                     <TableRow>
                       <TableCell className={useStyles.tableHeaderCell}>
-                        Дата и время
+                        Дата та час
                       </TableCell>
                       {/* Другие заголовки для полей данных */}
                     </TableRow>

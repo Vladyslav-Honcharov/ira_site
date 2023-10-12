@@ -25,6 +25,19 @@
   width: 25px; /* Adjust the desired width */
   height: 25px; /* Adjust the desired height */
   &:hover {
+    transition: 0.7s, color 0.7s;
     fill: aqua;
   }
+}
+
+.footer-map {
+  color: rgb(171, 166, 166) !important;
+  border-color: rgb(193, 189, 189) !important;
+  background: transparent !important;
+  transition: 0.7s, color 0.7s !important;
+}
+
+.footer-map:hover {
+  background: rgb(170, 168, 168) !important;
+  color: black !important;
 }

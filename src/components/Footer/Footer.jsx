@@ -2,6 +2,7 @@ import { FaViber, FaTelegram, FaMapMarkerAlt } from "react-icons/fa";
 import { BsInstagram } from "react-icons/bs";
 import "./Footer.scss";
 import { Button } from "@mui/material";
+import { grey } from "@mui/material/colors";
 
 function Footer() {
   return (
