@@ -8,6 +8,7 @@ import {
   getDocs,
 } from "firebase/firestore";
 import {
+  Button,
   Grid,
   Paper,
   Table,
@@ -107,27 +108,36 @@ function Timeline() {
     const dateKeys = Object.keys(groupedSessions);
 
     return dateKeys.map((dateKey, index) => (
-      <TableRow key={dateKey} hover={true}>
+      <TableRow
+        key={dateKey}
+        hover={true}
+        sx={{ borderBottom: "1.5px solid rgba(252, 252, 252, 0.746)" }}
+      >
         <TableCell>{dateKey}</TableCell>
         <TableCell>
           {groupedSessions[dateKey].map((session, index) => (
-            <span
+            <Button
               key={index}
               onClick={() => {
                 selectSession(session);
               }}
               style={{
                 cursor: "pointer",
-                textDecoration: "underline",
-                color: selectedSession === session ? "blue" : "inherit",
+                textDecoration: "none",
+                color: selectedSession === session ? "white" : "inherit",
+                background:
+                  selectedSession === session
+                    ? "grey"
+                    : "rgba(255, 255, 255, 0.881)",
+                margin: "2px",
+                boxShadow: "2px 2px 2px black",
               }}
             >
               {session.date.toDate().toLocaleTimeString("ru-UA", {
                 hour: "numeric",
                 minute: "numeric",
               })}
-              {index < groupedSessions[dateKey].length - 1 && " / "}
-            </span>
+            </Button>
           ))}
         </TableCell>
         {/* Другие поля данных */}
