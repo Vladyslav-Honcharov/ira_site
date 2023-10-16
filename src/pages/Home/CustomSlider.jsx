@@ -23,14 +23,21 @@ const useStyles = makeStyles((theme) => ({
   },
   slideContent: {
     minWidth: "200px",
-    position: "absolute",
-    bottom: theme.spacing(5),
-    left: theme.spacing(6),
+
     color: "white",
-    background: "rgba(0, 0, 0, 0.5)",
+    background: "rgba(0, 0, 0, 0.6)",
     borderRadius: "20px",
     padding: "15px",
     boxShadow: "0 4px 6px rgba(0, 0, 0, 1), 0 1px 3px rgba(0, 0, 0, 1)",
+  },
+  centeredContent: {
+    position: "absolute",
+    top: "50%",
+    left: "50%",
+    transform: "translate(-50%, -50%)",
+    display: "flex",
+    flexDirection: "column",
+    alignItems: "center",
   },
 }));
 
@@ -89,23 +96,25 @@ const Slider = () => {
               alt={slide.text}
               className={classes.slideImage}
             />
-            <div className={classes.slideContent}>
-              <Typography className={classes.slideText}>
-                {slide.text}
-              </Typography>
-              <Button
-                href={slide.buttonURL}
-                className={classes.slideButton}
-                variant="outlined"
-                style={{
-                  color: grey[400],
-                  borderColor: grey[400],
-                  minWidth: "150px",
-                  marginTop: "25px",
-                }}
-              >
-                {slide.buttonText}
-              </Button>
+            <div className={classes.centeredContent}>
+              <div className={classes.slideContent}>
+                <Typography className={classes.slideText}>
+                  {slide.text}
+                </Typography>
+                <Button
+                  href={slide.buttonURL}
+                  className={classes.slideButton}
+                  variant="outlined"
+                  style={{
+                    color: grey[400],
+                    borderColor: grey[400],
+                    minWidth: "150px",
+                    marginTop: "25px",
+                  }}
+                >
+                  {slide.buttonText}
+                </Button>
+              </div>
             </div>
           </div>
         ))}

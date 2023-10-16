@@ -214,21 +214,21 @@ const AppointmentForm = () => {
                     {selected.map((value) => (
                       <Chip
                         label={value}
-                        onDelete={(e) => {
-                          // Prevent the default behavior (opening the select)
-                          e.stopPropagation();
+                        // onDelete={(e) => {
+                        //   // Prevent the default behavior (opening the select)
+                        //   e.stopPropagation();
 
-                          // Remove the selected procedure from the values.procedure array
-                          const updatedProcedures = values.procedure.filter(
-                            (item) => item !== value
-                          );
+                        //   // Remove the selected procedure from the values.procedure array
+                        //   const updatedProcedures = values.procedure.filter(
+                        //     (item) => item !== value
+                        //   );
 
-                          // Удаление выбранной процедуры из списка выбранных
-                          setFieldValue("procedure", updatedProcedures);
+                        //   // Удаление выбранной процедуры из списка выбранных
+                        //   setFieldValue("procedure", updatedProcedures);
 
-                          // Handle procedure change to update the price
-                          handleProcedureChange(updatedProcedures);
-                        }}
+                        //   // Handle procedure change to update the price
+                        //   handleProcedureChange(updatedProcedures);
+                        // }}
                       />
                     ))}
                   </Box>

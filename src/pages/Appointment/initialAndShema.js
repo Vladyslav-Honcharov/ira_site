@@ -1,11 +1,15 @@
 import * as Yup from "yup";
 
 export const procedure = [
+  "Класика 1Д",
+  "Об'єм 2Д",
+  "Об'єм 3Д",
+  "Об'єм 4Д",
+  "Вії в кольорі Темний шоколад",
+  "L/M Вигин Мокрий ефект, Промінчики",
+  "Зняття моєї роботи без нарощування",
+  "Зняття роботи іншого майстра",
   "Навчання",
-  "Процедура 1",
-  "Процедура 2",
-  "Процедура 3",
-  "Процедура 4",
 ];
 
 export const availableTimes = ["08:00", "12:00", "15:00", "17:00"]; // Опции времени
@@ -37,22 +41,35 @@ export const calculatePrice = (selectedProcedures) => {
   let price = 0;
 
   // You can define the price logic here based on selected procedures
-  if (selectedProcedures.includes("Процедура 1")) {
+  if (selectedProcedures.includes("Класика 1Д")) {
+    price += 700; // Adjust the price as needed
+  }
+
+  if (selectedProcedures.includes("Об'єм 2Д")) {
+    price += 750; // Adjust the price as needed
+  }
+
+  if (selectedProcedures.includes("Об'єм 3Д")) {
+    price += 800; // Adjust the price as needed
+  }
+  if (selectedProcedures.includes("Об'єм 4Д")) {
+    price += 850; // Adjust the price as needed
+  }
+  if (selectedProcedures.includes("Вії в кольорі Темний шоколад")) {
+    price += 50; // Adjust the price as needed
+  }
+  if (selectedProcedures.includes("L/M Вигин Мокрий ефект, Промінчики")) {
+    price += 50; // Adjust the price as needed
+  }
+  if (selectedProcedures.includes("Зняття моєї роботи без нарощування")) {
+    price += 100; // Adjust the price as needed
+  }
+  if (selectedProcedures.includes("Зняття роботи іншого майстра")) {
     price += 100; // Adjust the price as needed
   }
 
-  if (selectedProcedures.includes("Процедура 2")) {
-    price += 150; // Adjust the price as needed
-  }
-
-  if (selectedProcedures.includes("Процедура 3")) {
-    price += 200; // Adjust the price as needed
-  }
-  if (selectedProcedures.includes("Процедура 4")) {
-    price += 180; // Adjust the price as needed
-  }
   if (selectedProcedures.includes("Навчання")) {
-    price = 2000; // Adjust the price as needed
+    price = 5000; // Adjust the price as needed
   }
   // Add more conditions for other procedures
 

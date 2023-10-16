@@ -41,38 +41,72 @@ const useStyles = {
 };
 
 function Price() {
-  // Данные об услугах для бровей
-  const browServices = [
-    {
-      name: "Корекція брів",
-      duration: "30 хвилин",
-      price: "300 грн",
-    },
-    {
-      name: "Біотату брів",
-      duration: "1 година",
-      price: "500 грн",
-    },
-    {
-      name: "Фарбування брів",
-      duration: "45 хвилин",
-      price: "250 грн",
-    },
-    // Добавьте другие услуги для бровей по аналогии
-  ];
+  // // Данные об услугах для бровей
+  // const browServices = [
+  //   {
+  //     name: "Корекція брів",
+  //     duration: "30 хвилин",
+  //     price: "140 грн",
+  //   },
+
+  //   {
+  //     name: "Фарбування брів",
+  //     duration: "45 хвилин",
+  //     price: "140 грн",
+  //   },
+  //   // Добавьте другие услуги для бровей по аналогии
+  // ];
 
   // Данные об услугах для вій
   const eyelashServices = [
     {
-      name: "Нарощування вій",
+      name: "Класика 1Д",
       duration: "2 години",
       price: "700 грн",
     },
     {
-      name: "Ламінування вій",
-      duration: "1,5 години",
-      price: "550 грн",
+      name: "Об'єм 2Д",
+      duration: "2 години",
+      price: "750 грн",
     },
+    {
+      name: "Об'єм 3Д",
+      duration: "2 години",
+      price: "800 грн",
+    },
+    {
+      name: "Об'єм 4Д",
+      duration: "2 години",
+      price: "850 грн",
+    },
+    {
+      name: "Вії в кольорі Темний шоколад",
+      duration: "+",
+      price: "50 грн",
+    },
+    {
+      name: "L/M Вигин Мокрий ефект, Промінчики",
+      duration: "+",
+      price: "50 грн",
+    },
+    {
+      name: "Зняття моєї роботи без нарощування",
+      duration: "+",
+      price: "100 грн",
+    },
+
+    {
+      name: "Зняття роботи іншого майстра",
+      duration: "+",
+      price: "100 грн",
+    },
+
+    {
+      name: "Зняття моєї роботи з подальшим нарощуванням",
+      duration: "",
+      price: "0 грн",
+    },
+
     // Добавьте другие услуги для вій по аналогии
   ];
   // Данные об обучение
@@ -80,43 +114,12 @@ function Price() {
     {
       name: "Навчання",
       duration: "5 днів(3 години)",
-      price: "2000 грн",
+      price: "5000 грн",
     },
   ];
 
   return (
     <div style={useStyles.price}>
-      <Paper style={useStyles.tableContainer}>
-        <Typography variant="h5" align="center">
-          Послуги для брів
-        </Typography>
-        <Table style={useStyles.table}>
-          <TableHead>
-            <TableRow style={useStyles.tableHead}>
-              <TableCell style={useStyles.tableCellContent}>Послуга</TableCell>
-              <TableCell style={useStyles.tableCellContent}>
-                Тривалість
-              </TableCell>
-              <TableCell style={useStyles.tableCellContent}>Ціна</TableCell>
-            </TableRow>
-          </TableHead>
-          <TableBody>
-            {browServices.map((service, index) => (
-              <TableRow key={index} style={useStyles.tableRow} hover={true}>
-                <TableCell style={useStyles.tableCellContent}>
-                  {service.name}
-                </TableCell>
-                <TableCell style={useStyles.tableCellContent}>
-                  {service.duration}
-                </TableCell>
-                <TableCell style={useStyles.tableCellContent}>
-                  {service.price}
-                </TableCell>
-              </TableRow>
-            ))}
-          </TableBody>
-        </Table>
-      </Paper>
       <Paper style={useStyles.tableContainer}>
         <Typography variant="h5" align="center">
           Послуги для вій
@@ -148,6 +151,38 @@ function Price() {
           </TableBody>
         </Table>
       </Paper>
+      {/* <Paper style={useStyles.tableContainer}>
+        <Typography variant="h5" align="center">
+          Послуги для брів
+        </Typography>
+        <Table style={useStyles.table}>
+          <TableHead>
+            <TableRow style={useStyles.tableHead}>
+              <TableCell style={useStyles.tableCellContent}>Послуга</TableCell>
+              <TableCell style={useStyles.tableCellContent}>
+                Тривалість
+              </TableCell>
+              <TableCell style={useStyles.tableCellContent}>Ціна</TableCell>
+            </TableRow>
+          </TableHead>
+          <TableBody>
+            {browServices.map((service, index) => (
+              <TableRow key={index} style={useStyles.tableRow} hover={true}>
+                <TableCell style={useStyles.tableCellContent}>
+                  {service.name}
+                </TableCell>
+                <TableCell style={useStyles.tableCellContent}>
+                  {service.duration}
+                </TableCell>
+                <TableCell style={useStyles.tableCellContent}>
+                  {service.price}
+                </TableCell>
+              </TableRow>
+            ))}
+          </TableBody>
+        </Table>
+      </Paper> */}
+
       <Paper style={useStyles.tableContainer}>
         <Typography variant="h5" align="center">
           Навчання
