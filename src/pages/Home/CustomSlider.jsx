@@ -8,18 +8,18 @@ import { grey } from "@mui/material/colors";
 
 const useStyles = makeStyles((theme) => ({
   slider: {
-    height: "75vh",
+    height: "100vh",
     width: "100%",
     position: "relative",
     overflow: "hidden",
-    marginBottom: 30,
+    // marginBottom: 30,
   },
   slide: {
     height: "100%",
     position: "relative",
   },
   slideImage: {
-    height: "75vh",
+    height: "100vh",
   },
   slideContent: {
     minWidth: "200px",

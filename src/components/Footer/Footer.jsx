@@ -2,7 +2,6 @@ import { FaViber, FaTelegram, FaMapMarkerAlt } from "react-icons/fa";
 import { BsInstagram } from "react-icons/bs";
 import "./Footer.scss";
 import { Button } from "@mui/material";
-import { grey } from "@mui/material/colors";
 
 function Footer() {
   return (
@@ -13,13 +12,13 @@ function Footer() {
       </div>
 
       <div className="footer-social">
-        <a href="https://telegram.com" target="_blank">
+        <a href="https://www.t.me/sheshenyaira" target="_blank">
           <FaTelegram className="icon" fill="blue" />
         </a>
-        <a href="https://instagram.com" target="_blank">
+        <a href="https://www.instagram.com/s.i_lashes/" target="_blank">
           <BsInstagram className="icon" fill="#e4405f" />
         </a>
-        <a href="https://viber.com" target="_blank">
+        <a href="viber://add?number=380971919424" target="_blank">
           <FaViber className="icon" />
         </a>
       </div>

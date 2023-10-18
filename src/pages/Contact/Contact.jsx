@@ -44,7 +44,7 @@ function Contact() {
         </div>
         <div className="contacts-social">
           <a
-            href="https://www.instagram.com"
+            href="https://www.instagram.com/s.i_lashes/"
             target="_blank"
             className="contacts-social__link"
           >
@@ -52,7 +52,7 @@ function Contact() {
             Instagram
           </a>
           <a
-            href="https://www.telegram.com"
+            href="https://www.t.me/sheshenyaira"
             target="_blank"
             className="contacts-social__link"
           >
@@ -60,7 +60,7 @@ function Contact() {
           </a>
 
           <a
-            href="https://www.viber.com"
+            href="viber://add?number=380971919424"
             target="_blank"
             className="contacts-social__link"
           >
