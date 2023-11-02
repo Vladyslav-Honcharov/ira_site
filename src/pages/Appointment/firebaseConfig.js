@@ -16,21 +16,21 @@ const db = getFirestore(app);
 const generateSchedule = async () => {
   // Установим начальную дату 1 октября текущего года
   const startDate = new Date();
-  startDate.setMonth(9); // 9 соответствует октябрю (0 - январь, 11 - декабрь)
-  startDate.setDate(1);
+  startDate.setMonth(10); // 9 соответствует октябрю (0 - январь, 11 - декабрь)
+  startDate.setDate(6);
   startDate.setHours(0, 0, 0, 0);
 
   // Установим конечную дату 31 октября текущего года
   const endDate = new Date();
-  endDate.setMonth(9);
-  endDate.setDate(31);
+  endDate.setMonth(10);
+  endDate.setDate(20);
   endDate.setHours(23, 59, 59, 999);
 
   const currentDate = new Date(startDate);
 
   while (currentDate <= endDate) {
     // Добавляем четыре сеанса в день
-    for (const time of [8, 12, 15, 17]) {
+    for (const time of [9, 11, 13, 15]) {
       const sessionDate = new Date(currentDate);
       sessionDate.setHours(time, 0, 0, 0);
 

@@ -8,7 +8,7 @@ function Footer() {
     <div className="footer">
       <div>
         {" "}
-        <FaMapMarkerAlt fill="red"></FaMapMarkerAlt> Бульвар Верховної ради 26б
+        <FaMapMarkerAlt fill="red"></FaMapMarkerAlt> Андрія Малишка 2
       </div>
 
       <div className="footer-social">
@@ -23,7 +23,7 @@ function Footer() {
         </a>
       </div>
       <Button
-        href="https://www.google.com/maps/place/26B,+%D0%B1%D1%83%D0%BB%D1%8C%D0%B2%D0%B0%D1%80+%D0%92%D0%B5%D1%80%D1%85%D0%BE%D0%B2%D0%BD%D0%BE%D1%97+%D0%A0%D0%B0%D0%B4%D0%B8,+26%D0%91,+%D0%9A%D0%B8%D1%97%D0%B2,+02000/@50.449435,30.627045,15z/data=!4m6!3m5!1s0x40d4c5512d757cf3:0x95818212b6cd3360!8m2!3d50.4497493!4d30.6267661!16s%2Fg%2F1tcyjkch?hl=uk&entry=ttu"
+        href="https://www.google.com/maps/place/%D0%B2%D1%83%D0%BB%D0%B8%D1%86%D1%8F+%D0%90%D0%BD%D0%B4%D1%80%D1%96%D1%8F+%D0%9C%D0%B0%D0%BB%D0%B8%D1%88%D0%BA%D0%B0,+2,+%D0%9A%D0%B8%D1%97%D0%B2,+02000/@50.4572934,30.611249,18z/data=!3m1!4b1!4m6!3m5!1s0x40d4cffc6974e381:0xab2a06b0813c93da!8m2!3d50.4572917!4d30.6125365!16s%2Fg%2F1trswj2s?hl=uk-UK&entry=ttu"
         target="_blank"
         rel="noopener noreferrer"
         className="footer-map"

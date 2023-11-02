@@ -62,22 +62,22 @@ function Price() {
     {
       name: "Класика 1Д",
       duration: "2 години",
-      price: "700 грн",
+      price: "600 грн",
     },
     {
       name: "Об'єм 2Д",
       duration: "2 години",
-      price: "750 грн",
+      price: "650 грн",
     },
     {
       name: "Об'єм 3Д",
       duration: "2 години",
-      price: "800 грн",
+      price: "700 грн",
     },
     {
       name: "Об'єм 4Д",
       duration: "2 години",
-      price: "850 грн",
+      price: "750 грн",
     },
     {
       name: "Вії в кольорі Темний шоколад",
@@ -113,7 +113,7 @@ function Price() {
   const educations = [
     {
       name: "Навчання",
-      duration: "5 днів(3 години)",
+      duration: "3 дні",
       price: "5000 грн",
     },
   ];

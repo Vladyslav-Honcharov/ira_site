@@ -12,7 +12,7 @@ export const procedure = [
   "Навчання",
 ];
 
-export const availableTimes = ["08:00", "12:00", "15:00", "17:00"]; // Опции времени
+// export const availableTimes = ["08:00", "12:00", "15:00", "17:00"]; // Опции времени
 
 export const validationSchema = Yup.object().shape({
   client: Yup.string().required("Ім'я обов'язкове"),
@@ -42,18 +42,18 @@ export const calculatePrice = (selectedProcedures) => {
 
   // You can define the price logic here based on selected procedures
   if (selectedProcedures.includes("Класика 1Д")) {
-    price += 700; // Adjust the price as needed
+    price += 600; // Adjust the price as needed
   }
 
   if (selectedProcedures.includes("Об'єм 2Д")) {
-    price += 750; // Adjust the price as needed
+    price += 650; // Adjust the price as needed
   }
 
   if (selectedProcedures.includes("Об'єм 3Д")) {
-    price += 800; // Adjust the price as needed
+    price += 700; // Adjust the price as needed
   }
   if (selectedProcedures.includes("Об'єм 4Д")) {
-    price += 850; // Adjust the price as needed
+    price += 750; // Adjust the price as needed
   }
   if (selectedProcedures.includes("Вії в кольорі Темний шоколад")) {
     price += 50; // Adjust the price as needed
