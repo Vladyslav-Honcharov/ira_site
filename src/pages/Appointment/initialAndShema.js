@@ -6,7 +6,9 @@ export const procedure = [
   "Об'єм 3Д",
   "Об'єм 4Д",
   "Вії в кольорі Темний шоколад",
-  "L/M Вигин Мокрий ефект, Промінчики",
+  "L/M Вигин",
+  "Мокрий ефект",
+  "Промінчики",
   "Зняття моєї роботи без нарощування",
   "Зняття роботи іншого майстра",
   "Навчання",
@@ -58,7 +60,13 @@ export const calculatePrice = (selectedProcedures) => {
   if (selectedProcedures.includes("Вії в кольорі Темний шоколад")) {
     price += 50; // Adjust the price as needed
   }
-  if (selectedProcedures.includes("L/M Вигин Мокрий ефект, Промінчики")) {
+  if (selectedProcedures.includes("L/M Вигин")) {
+    price += 50; // Adjust the price as needed
+  }
+  if (selectedProcedures.includes("Мокрий ефект")) {
+    price += 50; // Adjust the price as needed
+  }
+  if (selectedProcedures.includes("Промінчики")) {
     price += 50; // Adjust the price as needed
   }
   if (selectedProcedures.includes("Зняття моєї роботи без нарощування")) {
