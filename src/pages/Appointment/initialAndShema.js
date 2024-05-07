@@ -1,16 +1,15 @@
 import * as Yup from "yup";
 
 export const procedure = [
-  "Класика 1Д",
+  "Кутики",
+  "Класика",
   "Об'єм 2Д",
   "Об'єм 3Д",
   "Об'єм 4Д",
-  "Вії в кольорі Темний шоколад",
-  "L/M Вигин",
-  "Мокрий ефект",
-  "Промінчики",
-  "Зняття моєї роботи без нарощування",
-  "Зняття роботи іншого майстра",
+  "Об'єм 5Д-6Д",
+  "Нижнє нарощення",
+  "Мокрий з розтушкою",
+  "Аніме ефект",
   "Навчання",
 ];
 
@@ -43,31 +42,35 @@ export const calculatePrice = (selectedProcedures) => {
   let price = 0;
 
   // You can define the price logic here based on selected procedures
-  if (selectedProcedures.includes("Класика 1Д")) {
+  if (selectedProcedures.includes("Кутики")) {
     price += 600; // Adjust the price as needed
   }
 
+  if (selectedProcedures.includes("Класика")) {
+    price += 700; // Adjust the price as needed
+  }
+
   if (selectedProcedures.includes("Об'єм 2Д")) {
-    price += 650; // Adjust the price as needed
+    price += 750; // Adjust the price as needed
   }
 
   if (selectedProcedures.includes("Об'єм 3Д")) {
-    price += 700; // Adjust the price as needed
+    price += 800; // Adjust the price as needed
   }
   if (selectedProcedures.includes("Об'єм 4Д")) {
-    price += 750; // Adjust the price as needed
+    price += 900; // Adjust the price as needed
   }
-  if (selectedProcedures.includes("Вії в кольорі Темний шоколад")) {
-    price += 50; // Adjust the price as needed
+  if (selectedProcedures.includes("Об'єм 5Д-6Д")) {
+    price += 1000; // Adjust the price as needed
   }
-  if (selectedProcedures.includes("L/M Вигин")) {
-    price += 50; // Adjust the price as needed
+  if (selectedProcedures.includes("Нижнє нарощення")) {
+    price += 200; // Adjust the price as needed
   }
-  if (selectedProcedures.includes("Мокрий ефект")) {
-    price += 50; // Adjust the price as needed
+  if (selectedProcedures.includes("Мокрий з розтушкою")) {
+    price += 1000; // Adjust the price as needed
   }
-  if (selectedProcedures.includes("Промінчики")) {
-    price += 50; // Adjust the price as needed
+  if (selectedProcedures.includes("Аніме ефект")) {
+    price += 1000; // Adjust the price as needed
   }
   if (selectedProcedures.includes("Зняття моєї роботи без нарощування")) {
     price += 100; // Adjust the price as needed

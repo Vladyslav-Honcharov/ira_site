@@ -37,72 +37,63 @@ const useStyles = {
   tableRow: {},
   tableCellContent: {
     textAlign: "center", // Выравнивание по центру
+    "&:nth-child(odd)": {
+      backgroundColor: "black",
+    },
   },
 };
 
 function Price() {
-  // // Данные об услугах для бровей
-  // const browServices = [
-  //   {
-  //     name: "Корекція брів",
-  //     duration: "30 хвилин",
-  //     price: "140 грн",
-  //   },
-
-  //   {
-  //     name: "Фарбування брів",
-  //     duration: "45 хвилин",
-  //     price: "140 грн",
-  //   },
-  //   // Добавьте другие услуги для бровей по аналогии
-  // ];
-
-  // Данные об услугах для вій
   const eyelashServices = [
     {
-      name: "Класика 1Д",
+      name: "Кутики",
       duration: "2 години",
       price: "600 грн",
     },
     {
-      name: "Об'єм 2Д",
-      duration: "2 години",
-      price: "650 грн",
-    },
-    {
-      name: "Об'єм 3Д",
+      name: "Класика 1Д",
       duration: "2 години",
       price: "700 грн",
     },
     {
-      name: "Об'єм 4Д",
+      name: "Об'єм 2Д",
       duration: "2 години",
       price: "750 грн",
     },
     {
-      name: "Вії в кольорі Темний шоколад",
-      duration: "+",
-      price: "50 грн",
+      name: "Об'єм 3Д",
+      duration: "2 години",
+      price: "800 грн",
     },
     {
-      name: "L/M Вигин",
-      duration: "+",
-      price: "50 грн",
+      name: "Об'єм 4Д",
+      duration: "2 години",
+      price: "900 грн",
     },
     {
-      name: "Мокрий ефект",
-      duration: "+",
-      price: "50 грн",
+      name: "Об'єм 5Д-6Д",
+      duration: "2 години",
+      price: "1000 грн",
     },
     {
-      name: "Промінчики",
-      duration: "+",
-      price: "50 грн",
+      name: "Нижнє нарощення",
+      duration: "30 хвилин",
+      price: "200 грн",
     },
     {
-      name: "Зняття моєї роботи без нарощування",
-      duration: "15 хвилин",
-      price: "100 грн",
+      name: "Мокрий з розтушкою",
+      duration: "2 години",
+      price: "1000 грн",
+    },
+    {
+      name: "Аніме ефект",
+      duration: "2 години",
+      price: "1000 грн",
+    },
+    {
+      name: "M/L, мокрий/кольорові вії, коричневі вії",
+      duration: "+",
+      price: "без доплати",
     },
 
     {

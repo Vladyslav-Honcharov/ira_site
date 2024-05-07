@@ -25,6 +25,7 @@ import { initializeApp } from "firebase/app";
 import { getFirestore, deleteDoc, doc } from "firebase/firestore";
 import axios from "axios";
 import { grey } from "@mui/material/colors";
+import { RadioGroup, FormControlLabel, Radio, FormLabel } from "@mui/material";
 
 // Конфигурация Firebase
 const firebaseConfig = {
@@ -180,66 +181,25 @@ const AppointmentForm = () => {
             </Field>
             <ErrorMessage name="phone" component="div" className="error" />
 
-            <FormControl
-              fullWidth
-              margin="normal"
-              variant="outlined"
-              // sx={{ zIndex: 100 }}
-            >
-              <InputLabel htmlFor="procedure">Процедура *</InputLabel>
-              <Select
+            <FormControl component="fieldset">
+              <FormLabel component="legend">Процедура *</FormLabel>
+              <RadioGroup
                 name="procedure"
-                labelId="procedure-label"
-                id="procedure"
-                multiple
                 value={values.procedure}
                 onChange={(e) => {
-                  const selectedProcedures = e.target.value;
-                  setFieldValue("procedure", selectedProcedures);
-
-                  // Handle procedure change to update the price
-                  handleProcedureChange(selectedProcedures);
-
-                  // Если "Навчання" выбрано, снимаем все остальные выбранные процедуры
-                  if (isTrainingSelected) {
-                    setFieldValue(
-                      "procedure",
-                      selectedProcedures.filter((item) => item === "Навчання")
-                    );
-                  }
+                  setFieldValue("procedure", e.target.value);
+                  handleProcedureChange(e.target.value);
                 }}
-                input={<OutlinedInput id="procedure" label="Процедура *" />}
-                renderValue={(selected) => (
-                  <Box sx={{ display: "flex", flexWrap: "wrap", gap: 0.5 }}>
-                    {selected.map((value) => (
-                      <Chip
-                        label={value}
-                        // onDelete={(e) => {
-                        //   // Prevent the default behavior (opening the select)
-                        //   e.stopPropagation();
-
-                        //   // Remove the selected procedure from the values.procedure array
-                        //   const updatedProcedures = values.procedure.filter(
-                        //     (item) => item !== value
-                        //   );
-
-                        //   // Удаление выбранной процедуры из списка выбранных
-                        //   setFieldValue("procedure", updatedProcedures);
-
-                        //   // Handle procedure change to update the price
-                        //   handleProcedureChange(updatedProcedures);
-                        // }}
-                      />
-                    ))}
-                  </Box>
-                )}
               >
                 {procedure.map((name) => (
-                  <MenuItem key={name} value={name}>
-                    {name}
-                  </MenuItem>
+                  <FormControlLabel
+                    key={name}
+                    value={name}
+                    control={<Radio />}
+                    label={name}
+                  />
                 ))}
-              </Select>
+              </RadioGroup>
             </FormControl>
             <ErrorMessage name="procedure" component="div" className="error" />
 
