@@ -13,9 +13,12 @@ import {
 } from "@mui/material";
 import { useAppointmentContext } from "./AppointmentContext"; // Импортируйте контекст
 import "react-datepicker/dist/react-datepicker.css";
+import Typography from "@mui/material/Typography";
+
 import {
   initialValues,
   procedure,
+  procedureDop,
   validationSchema,
   calculatePrice,
 } from "./initialAndShema";
@@ -24,8 +27,14 @@ import Chip from "@mui/material/Chip"; // Импортируем компоне�
 import { initializeApp } from "firebase/app";
 import { getFirestore, deleteDoc, doc } from "firebase/firestore";
 import axios from "axios";
-import { grey } from "@mui/material/colors";
-import { RadioGroup, FormControlLabel, Radio, FormLabel } from "@mui/material";
+import { grey, teal } from "@mui/material/colors";
+import {
+  RadioGroup,
+  FormControlLabel,
+  Radio,
+  FormLabel,
+  Checkbox,
+} from "@mui/material";
 
 // Конфигурация Firebase
 const firebaseConfig = {
@@ -68,10 +77,10 @@ const AppointmentForm = () => {
         💌 Телефон: ${values.phone}
         Процедура: ${values.procedure.join(", ")}
         Дополнительный контакт: ${values.contacts}
-        Примечание: ${values.note}
+     
         Цена: ${totalPrice} грн
         `;
-
+      // Примечание: ${values.note}
       // Добавьте дату и время только если процедура не "Навчання"
       if (!isTrainingSelected) {
         text += `\n⏰ Дата и время: ${values.formatDate}`;
@@ -137,7 +146,7 @@ const AppointmentForm = () => {
       xs={12}
       md={6}
       className="appointment-form"
-      sx={{ marginTop: "55px", justifyContent: "center" }}
+      sx={{ marginTop: "20px", justifyContent: "center" }}
     >
       <h2>Запис на процедуру</h2>
       <Formik
@@ -181,29 +190,55 @@ const AppointmentForm = () => {
             </Field>
             <ErrorMessage name="phone" component="div" className="error" />
 
+            <RadioGroup
+              name="procedure"
+              value={values.procedure[0]} // Учитывайте, что это значение теперь массив
+              onChange={(e) => {
+                const selectedProcedure = e.target.value;
+                const updatedProcedures = [selectedProcedure];
+                setFieldValue("procedure", updatedProcedures);
+                handleProcedureChange(updatedProcedures);
+              }}
+            >
+              {procedure.map((proc) => (
+                <FormControlLabel
+                  key={proc.name}
+                  value={proc.name}
+                  control={<Radio />}
+                  label={`${proc.name} (${proc.time} / Ціна: ${proc.price} грн) `}
+                />
+              ))}
+            </RadioGroup>
             <FormControl component="fieldset">
-              <FormLabel component="legend">Процедура *</FormLabel>
-              <RadioGroup
-                name="procedure"
-                value={values.procedure}
-                onChange={(e) => {
-                  setFieldValue("procedure", e.target.value);
-                  handleProcedureChange(e.target.value);
-                }}
-              >
-                {procedure.map((name) => (
-                  <FormControlLabel
-                    key={name}
-                    value={name}
-                    control={<Radio />}
-                    label={name}
-                  />
-                ))}
-              </RadioGroup>
+              <FormLabel component="legend">Додаткові процедури</FormLabel>
+              {procedureDop.map((proc) => (
+                <FormControlLabel
+                  key={proc.name}
+                  control={
+                    <Checkbox
+                      checked={values.procedure.includes(proc.name)}
+                      onChange={(e) => {
+                        const isChecked = e.target.checked;
+                        const procedureName = proc.name;
+                        const updatedProcedures = isChecked
+                          ? [...values.procedure, procedureName]
+                          : values.procedure.filter(
+                              (procedure) => procedure !== procedureName
+                            );
+                        setFieldValue("procedure", updatedProcedures);
+                        handleProcedureChange(updatedProcedures);
+                      }}
+                      value={proc.name} // Добавьте значение для каждого чекбокса
+                    />
+                  }
+                  label={`${proc.name} (${proc.time} / Ціна: ${proc.price} грн)`}
+                />
+              ))}
             </FormControl>
+
             <ErrorMessage name="procedure" component="div" className="error" />
 
-            <Field
+            {/* <Field
               component={TextField}
               name="contacts"
               label="Додатковий контакт"
@@ -214,9 +249,9 @@ const AppointmentForm = () => {
               // Здесь добавьте value, чтобы передать значение в TextField
               value={values.contacts}
               onChange={(e) => setFieldValue("contacts", e.target.value)} // Используйте setFieldValue для обновления значения поля
-            />
+            /> */}
 
-            <Field
+            {/* <Field
               component={TextField}
               name="note"
               label="Примітка"
@@ -228,34 +263,44 @@ const AppointmentForm = () => {
               // Здесь добавьте value, чтобы передать значение в TextField
               value={values.note}
               onChange={(e) => setFieldValue("note", e.target.value)} // Используйте setFieldValue для обновления значения поля
-            />
+            /> */}
             {!isTrainingSelected && (
               <div>
-                Дата сеансу:{" "}
-                {selectedSession ? (
-                  selectedSession.date.toDate().toLocaleString("ru-UA", {
-                    day: "numeric",
-                    month: "numeric",
-                    year: "numeric",
-                    hour: "numeric",
-                    minute: "numeric",
-                  })
-                ) : (
-                  <strong>Не вибрано !</strong>
-                )}
+                <Typography
+                  variant="body1"
+                  style={{ textDecoration: "underline" }}
+                >
+                  Дата сеансу:{" "}
+                  {selectedSession ? (
+                    selectedSession.date.toDate().toLocaleString("ru-UA", {
+                      day: "numeric",
+                      month: "numeric",
+                      year: "numeric",
+                      hour: "numeric",
+                      minute: "numeric",
+                    })
+                  ) : (
+                    <strong>Не вибрано !</strong>
+                  )}
+                </Typography>
               </div>
             )}
             <div className="total-price">
-              <p>Ціна: {totalPrice} грн</p>
+              <Typography
+                variant="body1"
+                style={{ textDecoration: "underline" }}
+              >
+                Ціна: <strong>{totalPrice} грн</strong>
+              </Typography>
             </div>
 
             <Button
               type="submit"
               variant="contained"
               style={{
-                color: "black",
+                color: "white",
                 borderColor: "black",
-                background: grey[400],
+                background: grey[700],
                 minWidth: "150px",
               }}
             >

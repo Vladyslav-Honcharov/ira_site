@@ -47,32 +47,32 @@ function Price() {
   const eyelashServices = [
     {
       name: "Кутики",
-      duration: "2 години",
+      duration: "1 година",
       price: "600 грн",
     },
     {
-      name: "Класика 1Д",
+      name: "Класика",
       duration: "2 години",
       price: "700 грн",
     },
     {
       name: "Об'єм 2Д",
-      duration: "2 години",
+      duration: "2 години 15хв",
       price: "750 грн",
     },
     {
       name: "Об'єм 3Д",
-      duration: "2 години",
+      duration: "2 години 15хв",
       price: "800 грн",
     },
     {
       name: "Об'єм 4Д",
-      duration: "2 години",
+      duration: "2 години 15хв",
       price: "900 грн",
     },
     {
       name: "Об'єм 5Д-6Д",
-      duration: "2 години",
+      duration: "2 години 15хв",
       price: "1000 грн",
     },
     {
@@ -82,7 +82,7 @@ function Price() {
     },
     {
       name: "Мокрий з розтушкою",
-      duration: "2 години",
+      duration: "2 години 15хв",
       price: "1000 грн",
     },
     {
@@ -104,7 +104,7 @@ function Price() {
 
     {
       name: "Зняття моєї роботи з подальшим нарощуванням",
-      duration: "",
+      duration: "15 хвилин",
       price: "0 грн",
     },
 
@@ -115,7 +115,7 @@ function Price() {
     {
       name: "Навчання",
       duration: "3 дні",
-      price: "5000 грн",
+      price: "5500 грн",
     },
   ];
 

@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useRef } from "react";
 import "./Timeline.scss";
 import {
   getFirestore,
@@ -20,7 +20,8 @@ import {
 } from "@mui/material";
 import { initializeApp } from "firebase/app";
 import { useAppointmentContext } from "./AppointmentContext"; // Импортируйте контекст
-
+import Alert from "@mui/material/Alert";
+import { display, positions } from "@mui/system";
 const useStyles = {
   timeline: {
     fontWeight: "bold",
@@ -38,6 +39,13 @@ const useStyles = {
     backgroundColor: "rgba(215, 209, 209, 0.5)", // Установите задний фон таблицы
 
     overflow: "hidden",
+  },
+  alert: {
+    position: "absolute ",
+    bottom: "20px" /* Выберите желаемое расстояние от нижнего края экрана */,
+    left: "50%",
+    transform: "translateX(-50%)",
+    zIndex: "9999",
   },
 };
 
@@ -58,6 +66,7 @@ const db = getFirestore(app);
 function Timeline() {
   const [sessions, setSessions] = useState([]);
   const { selectedSession, selectSession } = useAppointmentContext(); // Получите выбранный сеанс и функцию для его выбора
+  const [selectedDate, setSelectedDate] = useState(false);
 
   useEffect(() => {
     fetchDataFromFirebase();
@@ -82,7 +91,18 @@ function Timeline() {
 
     setSessions(sessionsWithId); // Устанавливаем полученные данные в состояние
   };
-
+  const handleDateSelect = (date) => {
+    setSelectedDate(true);
+  };
+  const handleNextClick = () => {
+    const scrollHeight = document.body.scrollHeight;
+    const scrollToPosition = scrollHeight - scrollHeight * 0.4; // Прокрутка до 10% от конца страницы
+    window.scrollTo({
+      top: scrollToPosition,
+      behavior: "smooth",
+    });
+    setSelectedDate(false);
+  };
   // Группировка записей по датам
   const groupSessionsByDate = () => {
     const groupedSessions = {};
@@ -96,7 +116,6 @@ function Timeline() {
       if (!groupedSessions[dateKey]) {
         groupedSessions[dateKey] = [];
       }
-
       groupedSessions[dateKey].push(session);
     });
 
@@ -120,6 +139,7 @@ function Timeline() {
               key={index}
               onClick={() => {
                 selectSession(session);
+                handleDateSelect(true);
               }}
               style={{
                 cursor: "pointer",
@@ -182,6 +202,27 @@ function Timeline() {
           </Paper>
         </Grid>
       </Grid>
+      {selectedDate && (
+        <Alert severity="info" className="alert">
+          <div>
+            Дата сеансу:{" "}
+            {selectedSession ? (
+              selectedSession.date.toDate().toLocaleString("ru-UA", {
+                day: "numeric",
+                month: "numeric",
+                year: "numeric",
+                hour: "numeric",
+                minute: "numeric",
+              })
+            ) : (
+              <strong>Не вибрано !</strong>
+            )}
+          </div>
+          <Button variant="contained" onClick={handleNextClick}>
+            Далі
+          </Button>
+        </Alert>
+      )}
     </div>
   );
 }

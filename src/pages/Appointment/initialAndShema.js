@@ -1,16 +1,19 @@
 import * as Yup from "yup";
 
 export const procedure = [
-  "Кутики",
-  "Класика",
-  "Об'єм 2Д",
-  "Об'єм 3Д",
-  "Об'єм 4Д",
-  "Об'єм 5Д-6Д",
-  "Нижнє нарощення",
-  "Мокрий з розтушкою",
-  "Аніме ефект",
-  "Навчання",
+  { name: "Кутики", time: "1 год.", price: 600 },
+  { name: "Класика", time: "2 год.", price: 700 },
+  { name: "Об'єм 2Д", time: "2 год. 15хв", price: 750 },
+  { name: "Об'єм 3Д", time: "2 год. 15хв", price: 800 },
+  { name: "Об'єм 4Д", time: "2 год. 15хв", price: 900 },
+  { name: "Об'єм 5Д-6Д", time: "2 год. 15хв", price: 1000 },
+  { name: "Мокрий з розтушовкою", time: "2 год. 15хв", price: 1000 },
+  { name: "Аніме ефект", time: "2 год. 15хв", price: 1000 },
+  { name: "Навчання", time: "3 дні", price: 5500 },
+];
+export const procedureDop = [
+  { name: "Нижнє нарощення", time: "30 хв.", price: 200 },
+  { name: "Зняття іншого майстра", time: "15 хв.", price: 100 },
 ];
 
 // export const availableTimes = ["08:00", "12:00", "15:00", "17:00"]; // Опции времени
@@ -66,7 +69,10 @@ export const calculatePrice = (selectedProcedures) => {
   if (selectedProcedures.includes("Нижнє нарощення")) {
     price += 200; // Adjust the price as needed
   }
-  if (selectedProcedures.includes("Мокрий з розтушкою")) {
+  if (selectedProcedures.includes("Зняття іншого майстра")) {
+    price += 100; // Adjust the price as needed
+  }
+  if (selectedProcedures.includes("Мокрий з розтушовкою")) {
     price += 1000; // Adjust the price as needed
   }
   if (selectedProcedures.includes("Аніме ефект")) {
@@ -80,7 +86,7 @@ export const calculatePrice = (selectedProcedures) => {
   }
 
   if (selectedProcedures.includes("Навчання")) {
-    price = 5000; // Adjust the price as needed
+    price = 5500; // Adjust the price as needed
   }
   // Add more conditions for other procedures
 

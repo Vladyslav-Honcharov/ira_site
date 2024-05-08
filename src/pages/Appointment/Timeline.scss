@@ -1,0 +1,13 @@
+.alert {
+  position: fixed;
+  bottom: 20px; /* Выберите желаемое расстояние от нижнего края экрана */
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 9999;
+  width: 80vw;
+  button {
+    margin-top: 10px;
+    align-items: center;
+    width: 50%;
+  }
+}
