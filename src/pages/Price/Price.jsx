@@ -46,6 +46,11 @@ const useStyles = {
 function Price() {
   const eyelashServices = [
     {
+      name: "Ламінування вій (фарбування + ботокс)",
+      duration: "1 година",
+      price: "750 грн",
+    },
+    {
       name: "Кутики",
       duration: "1 година",
       price: "600 грн",

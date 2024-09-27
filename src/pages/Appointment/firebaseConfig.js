@@ -16,14 +16,14 @@ const db = getFirestore(app);
 const generateSchedule = async () => {
   // Установим начальную дату 1 октября текущего года
   const startDate = new Date();
-  startDate.setMonth(4); // 9 соответствует октябрю (0 - январь, 11 - декабрь)
-  startDate.setDate(8);
+  startDate.setMonth(8); // 9 соответствует октябрю (0 - январь, 11 - декабрь)
+  startDate.setDate(26);
   startDate.setHours(0, 0, 0, 0);
 
   // Установим конечную дату 31 октября текущего года
   const endDate = new Date();
-  endDate.setMonth(4);
-  endDate.setDate(31);
+  endDate.setMonth(8);
+  endDate.setDate(30);
   endDate.setHours(23, 59, 59, 999);
 
   const currentDate = new Date(startDate);
@@ -51,4 +51,4 @@ const generateSchedule = async () => {
   }
 };
 
-// generateSchedule();
+generateSchedule();

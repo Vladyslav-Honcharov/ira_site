@@ -1,6 +1,11 @@
 import * as Yup from "yup";
 
 export const procedure = [
+  {
+    name: "Ламінування вій (фарбування + ботокс)",
+    time: "1 год.",
+    price: 750,
+  },
   { name: "Кутики", time: "1 год.", price: 600 },
   { name: "Класика", time: "2 год.", price: 700 },
   { name: "Об'єм 2Д", time: "2 год. 15хв", price: 750 },
@@ -43,7 +48,9 @@ export const initialValues = {
 export const calculatePrice = (selectedProcedures) => {
   // Calculate the price based on selected procedures
   let price = 0;
-
+  if (selectedProcedures.includes("Ламінування вій (фарбування + ботокс)")) {
+    price += 750; // Adjust the price as needed
+  }
   // You can define the price logic here based on selected procedures
   if (selectedProcedures.includes("Кутики")) {
     price += 600; // Adjust the price as needed
